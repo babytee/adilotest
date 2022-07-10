@@ -10,7 +10,7 @@
             <i class="fa fa-video-camera"></i> New Request
           </button>
           <button class="btn btn-orange text-white round btn-sm">
-            <span class="btn-dot"></span> Start Recording
+            <span class="btn-dot">rec</span> Start Recording
           </button>
         </div>
       </div>

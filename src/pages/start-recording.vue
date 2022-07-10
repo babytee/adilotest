@@ -41,14 +41,14 @@
             <i class="fa fa-video-camera"></i> New Request
           </button>
           <a href="#recordModal" data-toggle="modal" class="btn btn-orange text-white round btn-sm">
-            <span class="btn-dot"></span> Start Recording
+            <span class="btn-dot">rec</span> Start Recording
           </a>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-12 mt-3">
-          <div class="table-responsive-sm">
+          <div class="table-responsive">
             <table class="table table-sm">
               <thead>
                 <tr>
@@ -83,7 +83,7 @@
 
       <!-- The Record Modal -->
       <div class="modal" id="recordModal">
-        <div class="modal-dialog d-flex h-100 m-0 m-auto">
+        <div class="modal-dialog d-flex h-100 m-0 m-auto p-3">
           <div class="modal-content w-100 m-auto">
             <!-- Modal Header -->
             <div class="modal-header pr-4 pl-4">
