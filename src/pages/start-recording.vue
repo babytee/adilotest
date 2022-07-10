@@ -1,209 +1,133 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3 p-0">
-        <nav class="navbar navbar-expand-sm bg-white navbar-light">
-          <router-link class="navbar-brand d-flex" to="/">
-            <span class="logo-bg"><i class="logo-dot"></i></span>
-            <b>Adilo</b>
-          </router-link>
-        </nav>
-        <div class="sidebar p-3">
-          <div class="btn btn-recording mt-3">
-            <img class="mr-3" src="assets/img/video-player.svg" width="20" /> My
-            Recordings
-          </div>
-          <div class="btn btn-block mt-3" style="font-size: 14px">
-            <img class="mr-3" src="assets/img/share-icon.jpeg" width="20" />
-            Requested
+
+  <div class="col-sm-9">
+    <div class="col-sm-10 m-auto clearix">
+      <div class="row mb-4 mt-4 d-flex">
+        <div class="col-sm-4 m-auto">
+          <ul class="breadcrumb bg-white small p-0">
+            <li class="breadcrumb-item">
+              <router-link class="text-secondary" to="/">Snapbyte</router-link>
+            </li>
+            <li class="breadcrumb-item active">My Recordings</li>
+          </ul>
+          <h6 class="m-0">My Recordings 25</h6>
+        </div>
+        <div class="col-sm-8 m-auto">
+          <button class="
+                  btn
+                  text-secondary
+                  bg-white
+                  border
+                  pr-3
+                  pl-3
+                  round
+                  btn-sm
+                ">
+            By date
+          </button>
+          <button class="
+                  btn
+                  text-secondary
+                  bg-white
+                  border
+                  pr-3
+                  pl-3
+                  round
+                  btn-sm
+                ">
+            Add filter
+          </button>
+          <button class="btn btn-info text-white round btn-sm">
+            <i class="fa fa-video-camera"></i> New Request
+          </button>
+          <a href="#recordModal" data-toggle="modal" class="btn btn-orange text-white round btn-sm">
+            <span class="btn-dot"></span> Start Recording
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 mt-3">
+          <div class="table-responsive-sm">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Recordings</th>
+                  <th class="pl-0">Title</th>
+                  <th>Views</th>
+                  <th>Size</th>
+                  <th colspan="2">Last Modified</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="video in Recordings" :key="video.id">
+                  <td>
+                    <div class="video-img">
+                      <img :src="video.image_icon" class="w-100" :alt="video.title" />
+                    </div>
+                  </td>
+                  <td class="pl-0">
+                    <p class="m-0">{{ video.title }}</p>
+                    <small>{{ video.description }}</small>
+                  </td>
+                  <td>{{ video.views }}</td>
+                  <td>{{ video.size }}</td>
+                  <td>{{ video.last_modified }}</td>
+                  <td><i class="fa fa-ellipsis-h"></i></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      <div class="col-sm-9">
-        <nav class="navbar navbar-expand-sm bg-white navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                href="#"
-                >Tools & App</a
-              >
-              <div class="dropdown-menu">
-                <router-link class="dropdown-item" to="/start-recording"
-                  >Snapbyte Recorder</router-link
-                >
-                <a class="dropdown-item">AudioBounce</a>
-                <a class="dropdown-item">Sugar Voice</a>
+
+      <!-- The Record Modal -->
+      <div class="modal" id="recordModal">
+        <div class="modal-dialog d-flex h-100 m-0 m-auto">
+          <div class="modal-content w-100 m-auto">
+            <!-- Modal Header -->
+            <div class="modal-header pr-4 pl-4">
+              <h6 class="modal-title">New Recording</h6>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body pr-4 pl-4">
+              <div class="form-group">
+                <label>Save the recording in</label>
+                <select class="form-control bg-light">
+                  <option value="">Select a project</option>
+                </select>
               </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">Channels</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-            <li class="nav-item">
-              <a class="nav-link profile-link" href="#">
-                <img class="bg-danger img-30 float-left" src="assets/img/user.png" alt="Profile" />
-                <div class="img-30-info float-left">
-                  <b>Cody Fisher</b>
-                  <small class="d-block">cody.fisher@gmail.com</small>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="col-sm-10 m-auto clearix">
-          <div class="row mb-4 mt-4 d-flex">
-            <div class="col-sm-4 m-auto">
-              <ul class="breadcrumb bg-white small p-0">
-                <li class="breadcrumb-item">
-                  <router-link class="text-secondary" to="/"
-                    >Snapbyte</router-link
-                  >
-                </li>
-                <li class="breadcrumb-item active">My Recordings</li>
-              </ul>
-              <h6 class="m-0">My Recordings 25</h6>
-            </div>
-            <div class="col-sm-8 m-auto">
-              <button
-                class="
-                  btn
-                  text-secondary
-                  bg-white
-                  border
-                  pr-3
-                  pl-3
-                  round
-                  btn-sm
-                "
-              >
-                By date
-              </button>
-              <button
-                class="
-                  btn
-                  text-secondary
-                  bg-white
-                  border
-                  pr-3
-                  pl-3
-                  round
-                  btn-sm
-                "
-              >
-                Add filter
-              </button>
-              <button class="btn btn-info text-white round btn-sm">
-                <i class="fa fa-video-camera"></i> New Request
-              </button>
-              <a
-                href="#recordModal"
-                data-toggle="modal"
-                class="btn btn-orange text-white round btn-sm"
-              >
-                <span class="btn-dot"></span> Start Recording
-              </a>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-12 mt-3">
-              <div class="table-responsive-sm">
-                <table class="table table-sm">
-                  <thead>
-                    <tr>
-                      <th>Recordings</th>
-                      <th class="pl-0">Title</th>
-                      <th>Views</th>
-                      <th>Size</th>
-                      <th colspan="2">Last Modified</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="video in Recordings" :key="video.id">
-                      <td>
-                        <div class="video-img">
-                          <img
-                            :src="video.image_icon"
-                            class="w-100"
-                            :alt="video.title"
-                          />
-                        </div>
-                      </td>
-                      <td class="pl-0">
-                        <p class="m-0">{{ video.title }}</p>
-                        <small>{{ video.description }}</small>
-                      </td>
-                      <td>{{ video.views }}</td>
-                      <td>{{ video.size }}</td>
-                      <td>{{ video.last_modified }}</td>
-                      <td><i class="fa fa-ellipsis-h"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="form-group">
+                <b class="d-inline-block">Record screen</b>
+                <label class="switch float-right">
+                  <input type="checkbox" @click="screenRecord($event)" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="form-group">
+                <b class="d-inline-block">Record camera</b>
+                <label class="switch float-right">
+                  <input type="checkbox" @click="cameraRecord($event)" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="form-group">
+                <b class="d-inline-block">Record mic</b>
+                <label class="switch float-right">
+                  <input type="checkbox" @click="micRecord($event)" />
+                  <span class="slider round"></span>
+                </label>
               </div>
             </div>
-          </div>
-
-          <!-- The Record Modal -->
-          <div class="modal" id="recordModal">
-            <div class="modal-dialog d-flex h-100 m-0 m-auto">
-              <div class="modal-content w-100 m-auto">
-                <!-- Modal Header -->
-                <div class="modal-header pr-4 pl-4">
-                  <h6 class="modal-title">New Recording</h6>
-                  <button type="button" class="close" data-dismiss="modal">
-                    &times;
-                  </button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body pr-4 pl-4">
-                  <div class="form-group">
-                    <label>Save the recording in</label>
-                    <select class="form-control bg-light">
-                      <option value="">Select a project</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <b class="d-inline-block">Record screen</b>
-                    <label class="switch float-right">
-                      <input type="checkbox" @click="screenRecord($event)" />
-                      <span class="slider round"></span>
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <b class="d-inline-block">Record camera</b>
-                    <label class="switch float-right">
-                      <input type="checkbox" @click="cameraRecord($event)" />
-                      <span class="slider round"></span>
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <b class="d-inline-block">Record mic</b>
-                    <label class="switch float-right">
-                      <input type="checkbox" @click="micRecord($event)" />
-                      <span class="slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer pr-4 pl-4">
-                  <div class="col-sm-10 clearfix m-auto">
-                    <button
-                      @click="startRecord()"
-                      data-dismiss="modal"
-                      class="btn btn-block btn-info round"
-                    >
-                      Start Recording
-                    </button>
-                  </div>
-                </div>
+            <!-- Modal footer -->
+            <div class="modal-footer pr-4 pl-4">
+              <div class="col-sm-10 clearfix m-auto">
+                <button @click="startRecord()" data-dismiss="modal" class="btn btn-block btn-info round">
+                  Start Recording
+                </button>
               </div>
             </div>
           </div>
@@ -287,6 +211,7 @@ export default {
 .dropdown .nav-link {
   color: #000 !important;
 }
+
 .dropdown::after {
   position: absolute;
   content: "";
@@ -300,22 +225,27 @@ export default {
 table {
   font-size: small;
 }
+
 thead th {
   padding-bottom: 15px !important;
 }
+
 tbody td {
   padding-bottom: 10px !important;
 }
+
 thead th,
 tbody td {
   border: none !important;
 }
+
 .video-img {
   width: 90px;
   height: 50px;
   border-radius: 6px;
   overflow: hidden;
 }
+
 .form-group {
   margin-bottom: 30px;
 }
